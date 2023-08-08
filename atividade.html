@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lista de Consulta</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    h1{
+        text-align: center;
+        background-color: #68aabe;
+
+    }
+    
+    th, td {
+      border: 1px solid #a2c8d6;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    th {
+      background-color: #cef7f7;
+    }
+    
+    input[type="text"] {
+      width: 100%;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    select {
+      width: 100%;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+    button {
+      background-color: #d60c0c;
+      color: rgb(224, 235, 222);
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: #2bd315;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Lista de Consulta</h1>
+
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Hora</th>
+    <th>Data</th>
+    <th>Tipo de Médico</th>
+    <th>Excluir</th>
+  </tr>
+  <tr>
+    <td><input type="text" name="nome"></td>
+    <td><input type="text" name="hora"></td>
+    <td><input type="date" name="data"></td>    
+    <td>
+      <select name="tipo-medico">
+        <option value="cardiologista">Cardiologista</option>
+        <option value="clinico-geral">Clínico Geral</option>
+        <option value="ortopedista">Ortopedista</option>
+        <!-- Adicione mais opções conforme necessário -->
+      </select>
+    </td>
+    <td><button onclick="addRow()">Adicionar</button></td>
+  </tr>
+</table>
+
+<script>
+  function addRow() {
+    var table = document.querySelector("table");
+    var newRow = table.insertRow(table.rows.length - 1);
+
+    var nomeCell = newRow.insertCell(0);
+    var horaCell = newRow.insertCell(1);
+    var dataCell = newRow.insertCell(2);
+    var tipoMedicoCell = newRow.insertCell(3);
+    var excluirCell = newRow.insertCell(4);
+
+    var nomeInput = document.querySelector("input[name='nome']").value;
+    var horaInput = document.querySelector("input[name='hora']").value;
+    var dataInput = document.querySelector("input[name='data']").value;
+    var tipoMedicoInput = document.querySelector("select[name='tipo-medico']").value;
+
+    nomeCell.innerHTML = nomeInput;
+    horaCell.innerHTML = horaInput;
+    dataCell.innerHTML = dataInput;
+    tipoMedicoCell.innerHTML = tipoMedicoInput;
+    excluirCell.innerHTML = "<button onclick='deleteRow(this)'>Excluir</button>";
+
+    document.querySelector("input[name='nome']").value = "";
+    document.querySelector("input[name='hora']").value = "";
+    document.querySelector("input[name='date']").value = "";
+  }
+
+  function deleteRow(button) {
+    var row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+  }
+</script>
+
+</body>
+</html>
